@@ -1,3 +1,6 @@
+# %% [markdown]
+## Plot the distribution of senders of chat messages
+### Setup Hansken connection
 # %% [python]
 import sys
 import squarify
@@ -6,9 +9,8 @@ import matplotlib.pyplot as plt
 
 from hansken.connect import connect_project
 
-# setup hansken connection
 in_browser = 'js' in sys.modules
-hansken_host = ""
+hansken_host = ''
 context = connect_project(endpoint=f'http://{hansken_host}:9091/gatekeeper/',
                           project='d42bd9c3-63db-474c-a36f-b87e1eb9e2d3',
                           keystore=f'http://{hansken_host}:9091/keystore/',
@@ -17,7 +19,9 @@ context = connect_project(endpoint=f'http://{hansken_host}:9091/gatekeeper/',
                           auth=SimpleNamespace() if in_browser else None,
                           interactive=True)
 
-
+# %% [markdown]
+### Retrieve all senders
+# The `unique_values` function returns all values for a given property within a project. In this case, we retrieve all values for `chatMessage.from`.
 
 # %% [python]
 sizes = []
@@ -26,7 +30,10 @@ for sender in context.unique_values("chatMessage.from"):
     sizes.append(sender['count'])
     labels.append(sender['value'])
 
-# plot it
+# %% [markdown]
+### Use a treemap visualization to plot the distribution of senders.
+
+# %% [python]
 fig = plt.figure(figsize=(12,6))
 ax = fig.add_subplot(111)
 squarify.plot(sizes=sizes, label=labels, alpha=.6, ax=ax)

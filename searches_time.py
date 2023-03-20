@@ -3,6 +3,7 @@
 
 ### Initialize Hansken connection
 # Replace `hansken_host` with the ip of a Hansken instance.
+
 # %% [python]
 import sys
 import pandas as pd
@@ -15,7 +16,7 @@ from hansken.query import RangeFacet
 
 # The line below finds out if we run in the browser by checking for the js module
 in_browser = 'js' in sys.modules
-hansken_host = ""
+hansken_host = ''
 context = connect_project(endpoint=f'http://{hansken_host}:9091/gatekeeper/',
                           project='d42bd9c3-63db-474c-a36f-b87e1eb9e2d3',
                           keystore=f'http://{hansken_host}:9091/keystore/',
@@ -23,9 +24,10 @@ context = connect_project(endpoint=f'http://{hansken_host}:9091/gatekeeper/',
                           # because an authenticated session should already be present
                           auth=SimpleNamespace() if in_browser else None,
                           interactive=True)
+
 # %% [markdown]
 ### Aggregate browser history data
-# Use a Facet to count the number of `browserHistory` traces per day.
+# The cell below retrieves the browser activity from Hansken. We use a `Facet` to count the number of traces where the `accessedOn` property is within a specific day.
 # %% [python]
 # Group the number of searches by the accessedOn property on a scale of a day. A Facet on a date requires a min and max
 facet = RangeFacet('browserHistory.accessedOn', scale='day', min="2022-01-01", max="2023-01-01")
@@ -37,9 +39,11 @@ with context.search("browserHistory.accessedOn=2022", facets=facet, count=0) as 
 # make sure pandas knows this is a timestamp
 df['Day'] = pd.to_datetime(df['Day'])
 df
+
 # %% [markdown]
 ### Plot the results
-# Use `pyplot` to create a bar chart showing the occurrences of browserHitory traces, indicating peak usage.
+# The cell below uses `pyplot` to create a bar chart using the previous information, plotting the number of traces/day.
+
 # %% [python]
 # Plot results
 fig, ax = pyplot.subplots(figsize=(10, 6))
