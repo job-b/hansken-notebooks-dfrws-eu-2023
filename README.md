@@ -14,3 +14,4 @@
     * Windows: If `wordcloud` cannot be installed, try installing wheel from here https://www.lfd.uci.edu/~gohlke/pythonlibs/#wordcloud
 * Verify if the scripts contain `Run Cell` options -> Download ipykernel package if prompted
 * Select default Python installation to use as kernel
+* Replace `hansken_host` variable with the ip of your host 
