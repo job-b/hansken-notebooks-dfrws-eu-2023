@@ -11,6 +11,7 @@
     * Windows: if an error regarding about_Execution_Policies occurs, change default terminal to Command Prompt instead of PowerShell: File -> Preferences -> Settings -> Features -> Terminal -> Integrated -> Default Profile: Windows -> Select `Command Prompt`
     * In terminal: `pip install -r requirements.txt`
     * Windows: If `wordcloud` cannot be installed, try installing wheel from here https://www.lfd.uci.edu/~gohlke/pythonlibs/#wordcloud (`pip install wordcloud-1.8.1-cp311-cp311-win_amd64.whl`)
+    * Linux/MacOS - ignore pywin32 dependency - remove from requirements.txt
 * Replace `hansken_host` variable with the ip of your host 
 * Verify if the scripts contain `Run Cell` options -> Download ipykernel package if prompted
 * Select default Python installation to use as kernel
