@@ -15,3 +15,7 @@
 * Replace `hansken_host` variable with the ip of your host 
 * Verify if the scripts contain `Run Cell` options -> Download ipykernel package if prompted
 * Select default Python installation to use as kernel
+
+* Linux: If `<ipython-input-3-2c12d96ddab5>:7: UserWarning: Matplotlib is currently using agg;, which is a non-GUI backend, so cannot show the figure.` this error pops up:
+    * update imports to explicitly use a gui backend for matplotlib: `matplotlib.use('tkAgg')`
+    * install tkinter `pip install tkinter`
